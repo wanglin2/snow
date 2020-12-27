@@ -18,6 +18,8 @@ class Snow {
         this.x = 0
         // 重置位置
         this.y = 0
+        // z轴位置
+        this.z = 0
         // 水平速度
         this.sx = 0
         // 是否左右摇摆
@@ -64,6 +66,7 @@ class Snow {
         }
         this.sy = isQuick ? Math.random() * this.quickMaxSpeed + this.quickMinSpeed : Math.random() * this.maxSpeed + this.minSpeed
         this.sx = this.dir === 'r' ? this.sy : -this.sy
+        this.z = isQuick ? Math.random() * 300 + 200 : 0
         this.swingStep = 0.01 * Math.random()
         this.swingRadian = Math.random() * (1.1 - 0.9) + 0.9
     }
@@ -77,7 +80,7 @@ class Snow {
             display: block;
             width: ${this.isRain ? 1 : this.width}px;
             height: ${this.width}px;
-            opacity: ${this.isRain ? 1 : this.opacity};
+            opacity: ${this.opacity};
             background-image: radial-gradient(#fff 0%, rgba(255, 255, 255, 0) 60%);
             border-radius: 50%;
             z-index: 9999999999999;
@@ -118,7 +121,7 @@ class Snow {
           this.init(true)
           this.setStyle()
         }
-        this.el.style.transform = `translate(${this.x}px, ${this.y}px) ${this.getRotate(this.sy, this.sx)}`
+        this.el.style.transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px) ${this.getRotate(this.sy, this.sx)}`
       }
 
       getRotate(sy, sx) {
