@@ -1,4 +1,4 @@
-class Snow {
+export default class Snow {
     constructor (opt = {}) {
         // 是否是雨
         this.isRain = opt.isRain || false
@@ -154,6 +154,7 @@ class Snows {
         })
     }
 }
+
 new Snows({
     isRain: true,
     num: 300,
